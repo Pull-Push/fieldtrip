@@ -8,6 +8,8 @@ import { getAllNHLData } from "@/lib/nhl";
 import { getAllUSWNTData } from "@/lib/uswnt";
 import { getAllWBNAData } from "@/lib/wbna";
 
+import Games from "@/app/components/Games";
+import CalendarPicker from "@/app/components/CalendarPicker";
 
 
 
@@ -15,9 +17,9 @@ const [nflData, nflTeams, mlbData, mlsData, nbaData, ncaafData, ncaamData, nhlDa
       getAllMLBData(),getAllMLSData(), getAllNBAData(), getAllNCAAFData(), getAllNCAAMData(), getAllNHLData(), getAllUSWNTData(), getAllWBNAData() ])
       // console.log('nflTeams', nflTeams)
 
-const scheduleData = await getTeamSchedule(30)
+// const scheduleData = await getTeamSchedule(30)
 // console.log('niners Sched', scheduleData)
-console.log( 'Sched drill', scheduleData.events[2].competitions[0].venue)
+// console.log( 'Sched drill', scheduleData.events[2].competitions[0].venue)
 
 
 export default function Home() {
@@ -49,14 +51,15 @@ export default function Home() {
         </div>
     ))} */}
     {/* SAMPLE SCHEDULE */}
-    <h1>{scheduleData.displayName} Schedule Data</h1>
+    {/* <h1>{scheduleData.displayName} Schedule Data</h1>
     {scheduleData.events.map((event) => (
       <div key={event.id}>
         <p>{event.shortName}</p>
         <p>Location:{event.competitions[0].venue.fullName}</p>
         <p>{event.competitions[0].venue.address.city} - {event.competitions[0].venue.address.country}</p>
       </div>
-    ))}
+    ))} */}
+    <Games />
     </div>
   );
 }
