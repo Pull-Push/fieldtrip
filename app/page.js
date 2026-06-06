@@ -9,9 +9,6 @@ import { getAllUSWNTData } from "@/lib/uswnt";
 import { getAllWBNAData } from "@/lib/wbna";
 
 import Games from "@/app/components/Games";
-import CalendarPicker from "@/app/components/CalendarPicker";
-
-
 
 const [nflData, nflTeams, mlbData, mlsData, nbaData, ncaafData, ncaamData, nhlData, uswntData, wnbaData] = await Promise.all([getAllNFLData(), getNFLTeams(),
       getAllMLBData(),getAllMLSData(), getAllNBAData(), getAllNCAAFData(), getAllNCAAMData(), getAllNHLData(), getAllUSWNTData(), getAllWBNAData() ])
