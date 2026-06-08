@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 
@@ -22,7 +24,30 @@ export default function RootLayout({ children }) {
       lang="en"
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col">{children}</body>
+      <body className="min-h-full flex flex-col">
+        <nav className="fixed top-0 left-0 right-0 z-50 bg-black/60 backdrop-blur-md px-6 py-4">
+          <div className="flex gap-2 items-center justify-between">
+          <Link href="/" className="text-white">FieldTrip</Link>
+          <div className="flex justify-between items-center gap-2">
+
+          <Link href="/">All Sports</Link>
+          <Link href="/baseball/mlb">MLB</Link>
+          <Link href="/soccer/usa.1">MLS</Link>
+          <Link href="/basketball/nba">NBA</Link>
+          <Link href="/football/college-football">NCAAF</Link>
+          <Link href="/basketball/mens-college-basketball">NCAAM</Link>
+          <Link href="/basketball/womens-college-basketball">NCAAW</Link>
+          <Link href="/football/nfl">NFL</Link>
+          <Link href="/hockey/nhl">NHL</Link>
+          <Link href="/soccer/usa.nwsl">NWSL</Link>
+          <Link href="/basketball/wnba">WBNA</Link>
+          </div>
+          </div>
+        </nav>
+          <main className="flex-1">
+              {children}
+          </main>
+      </body>
     </html>
   );
 }

@@ -1,44 +1,46 @@
 'use client'
 
-import { getNFLGamesByDateRange, getNFLTeams } from "@/lib/nfl";
 
 import { useSearchParams } from "next/navigation";
 import Calendar from "./CalendarPicker";
 import { useEffect, useState } from "react";
 
 
-export default function Games() {
+export default function Games({sport, league}) {
     const[games, setGames ] = useState([])
-    const [teams, setTeams ] = useState(null)
+    const [teams, setTeams ] = useState([])
 
     const searchParams = useSearchParams()
     const dateRange = searchParams.get('dates')
-    console.log('searchParams', dateRange)
+    // console.log('searchParams', dateRange)
 
+
+    // console.log('games sport', sport)
+    // console.log('games league', league)
+    
     useEffect(() =>{
         async function fetchData() {
-            const [nflTeams, nflDatesData ] = await Promise.all([
-                fetch(`/api/teams`).then(res => res.json()),
-                fetch(`/api/nflDates?dates=${dateRange}`).then(res => res.json())
-            ])
-            setTeams(nflTeams)
-            setGames(nflDatesData)
+            const response = await fetch(`/api/teams?sport=${sport}&league=${league}`)
+            const data = await response.json()
+            setTeams(data)
             } 
             
-            if(dateRange) fetchData()
-            },
-            [dateRange])
+            fetchData()
+        },[league, sport])
 
-console.log('teams data', teams)
-console.log('gamesData', games)
+console.log('teams data', teams.items)
 
     return(
-        <div>
+        <div className="py-20">
             <Calendar />
-        <h1>
-            Date Range Games go here eventually
-        </h1>
-
+        <h1>TEAMS</h1>
+        <div className="color-white">
+            {teams?.items?.map((team, index) => (
+                <div key={index}>
+                    <p>Team Name - {team.displayName}</p>
+                </div>
+            ))}
+        </div>
         </div>
     )
 }

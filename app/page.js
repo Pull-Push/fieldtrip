@@ -10,7 +10,7 @@ import { getAllWBNAData } from "@/lib/wbna";
 
 import Games from "@/app/components/Games";
 
-const [nflData, nflTeams, mlbData, mlsData, nbaData, ncaafData, ncaamData, nhlData, uswntData, wnbaData] = await Promise.all([getAllNFLData(), getNFLTeams(),
+const [nflTeams] = await Promise.all([getAllNFLData(), getNFLTeams(),
       getAllMLBData(),getAllMLSData(), getAllNBAData(), getAllNCAAFData(), getAllNCAAMData(), getAllNHLData(), getAllUSWNTData(), getAllWBNAData() ])
       // console.log('nflTeams', nflTeams)
 
@@ -22,8 +22,7 @@ const [nflData, nflTeams, mlbData, mlsData, nbaData, ncaafData, ncaamData, nhlDa
 export default function Home() {
 
   return (
-    <div>
-      <h1>FIELDTRIP</h1>
+    <div className="py-20">
       {/* <h2>DATA FOR {nflData.leagues[0].name}</h2> */}
       {/* {nflData.leagues[0].calendar.map((single) =>(
         <div key={single.value}>
@@ -56,7 +55,6 @@ export default function Home() {
         <p>{event.competitions[0].venue.address.city} - {event.competitions[0].venue.address.country}</p>
       </div>
     ))} */}
-    <Games />
     </div>
   );
 }

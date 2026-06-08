@@ -1,8 +1,12 @@
 import { getNFLTeams } from "@/lib/nfl"
+import { getSportTeams } from "@/lib/sports"
 
+export async function GET(request) {
+    const { searchParams } = new URL(request.url)
 
-export async function GET() {
+    const sport = searchParams.get('sport')
+    const league = searchParams.get('league')
 
-    const data = await getNFLTeams()
+    const data = await getSportTeams(sport, league)
     return Response.json(data)
 }
