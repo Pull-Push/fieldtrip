@@ -2,9 +2,9 @@
 
 
 import { useSearchParams } from "next/navigation";
-import Calendar from "./CalendarPicker";
 import { useEffect, useState } from "react";
-
+import Calendar from "./CalendarPicker";
+import GameCard from "./GameCard";
 
 export default function Games({sport, league}) {
     const[games, setGames ] = useState([])
@@ -12,35 +12,28 @@ export default function Games({sport, league}) {
 
     const searchParams = useSearchParams()
     const dateRange = searchParams.get('dates')
-    // console.log('searchParams', dateRange)
 
 
     // console.log('games sport', sport)
     // console.log('games league', league)
     
     useEffect(() =>{
-        async function fetchData() {
-            const response = await fetch(`/api/teams?sport=${sport}&league=${league}`)
+        async function fetchGames() {
+            const response = await fetch(`/api/games?league=${league}`)
             const data = await response.json()
-            setTeams(data)
+            setGames(data)
             } 
             
-            fetchData()
-        },[league, sport])
+            fetchGames()
+        },[league])
 
-console.log('teams data', teams.items)
-
-    return(
-        <div className="py-20">
-            <Calendar />
-        <h1>TEAMS</h1>
-        <div className="color-white">
-            {teams?.items?.map((team, index) => (
-                <div key={index}>
-                    <p>Team Name - {team.displayName}</p>
-                </div>
-            ))}
+return (
+    <div className="py-20">
+        <Calendar />
+        <h1 className="text-xl font-semibold my-4">Games</h1>
+        {games.map((game) => (
+            <GameCard key={game.id} game={game} />
+        ))}
         </div>
-        </div>
-    )
+    );
 }

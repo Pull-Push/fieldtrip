@@ -1,4 +1,3 @@
-import { getNFLTeams } from "@/lib/nfl"
 import { getSportTeams } from "@/lib/sports"
 
 export async function GET(request) {

@@ -41,6 +41,7 @@ export default function RootLayout({ children }) {
           <Link href="/hockey/nhl">NHL</Link>
           <Link href="/soccer/usa.nwsl">NWSL</Link>
           <Link href="/basketball/wnba">WBNA</Link>
+          <Link href="/hockey/pwhl">PWHL</Link>
           </div>
           </div>
         </nav>
